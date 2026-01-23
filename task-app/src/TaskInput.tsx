@@ -4,8 +4,9 @@ import TaskList from "./TaskList";
 const TaskInput = () => {
   const [tasks,setTasks]=useState<string[]>([]);
   const [task,setTask]=useState<string>("");
-  const handleTask=()=>{
-if(event.code="Enter"){
+
+  const handleAddTask=(event:React.KeyboardEvent<HTMLButtonElement>)=>{
+if(event.code==="Enter"){
   setTasks(tasks=>[...tasks,task])
   setTask("")
 }
@@ -13,7 +14,7 @@ if(event.code="Enter"){
   return (
     <>
     <input type="text" value={task} onChange={e=>setTask(e.target.value)}/>
-    <button onClick={handleTask}>Add</button>
+    <button onClick={handleAddTask}>Add</button>
     <TaskList tasks={tasks} />
     </>
   )
