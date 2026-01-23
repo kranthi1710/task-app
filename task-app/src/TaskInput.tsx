@@ -5,16 +5,17 @@ const TaskInput = () => {
   const [tasks,setTasks]=useState<string[]>([]);
   const [task,setTask]=useState<string>("");
 
-  const handleAddTask=(event:React.KeyboardEvent<HTMLButtonElement>)=>{
-if(event.code==="Enter"){
+  const handleAddTask=()=>{
   setTasks(tasks=>[...tasks,task])
   setTask("")
-}
   }
+
   return (
     <>
-    <input type="text" value={task} onChange={e=>setTask(e.target.value)}/>
-    <button onClick={handleAddTask}>Add</button>
+    <input type="text" value={task} 
+    onChange={e=>setTask(e.target.value)}
+    onKeyDown={e=>e.key==="Enter" && handleAddTask()}
+    placeholder="Enter Task"/>
     <TaskList tasks={tasks} />
     </>
   )
